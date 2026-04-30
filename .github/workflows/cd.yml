@@ -10,6 +10,12 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
 
+    env:
+      REGION: europe-west2
+      PROJECT_ID: notely-bootdev-494920
+      REPO: notely-ar-repo
+      IMAGE: notely:latest
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -35,4 +41,15 @@ jobs:
         run: gcloud info
 
       - name: Push image to Artifact Registry
-        run: gcloud builds submit --tag europe-west2-docker.pkg.dev/notely-bootdev-494920/notely-ar-repo/notely:latest .
+        run: |
+          gcloud builds submit \
+          --tag $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$IMAGE .
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy notely \
+          --image $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$IMAGE \
+          --region $REGION \
+          --allow-unauthenticated \
+          --project $PROJECT_ID \
+          --max-instances=4
