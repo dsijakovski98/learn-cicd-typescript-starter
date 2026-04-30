@@ -2,14 +2,14 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "module": "nodenext",
+    "module": "es2015",
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
-    "moduleResolution": "nodenext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["./src/**/*.ts"],
+  "include": ["./src/**/*.ts", "./tests/**/*.test.ts"],
   "exclude": ["node_modules"]
 }

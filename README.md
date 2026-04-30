@@ -1,5 +1,7 @@
 # learn-cicd-typescript-starter (Notely)
 
+![CI](https://github.com/dsijakovski98/learn-cicd-typescript-starter/actions/workflows/ci.yml/badge.svg)
+
 This repo contains the typescript starter code for the "Notely" application for the "Learn CICD" course on [Boot.dev](https://boot.dev).
 
 ## Local Development
@@ -10,6 +12,11 @@ Create a `.env` file in the root of the project with the following contents:
 
 ```bash
 PORT="8080"
+```
+
+```bash
+touch .env
+echo 'PORT="8080" > .env'
 ```
 
 Run the server:
