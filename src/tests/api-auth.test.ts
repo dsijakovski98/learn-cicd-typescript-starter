@@ -21,7 +21,6 @@ describe('API auth - API key is fetched correctly', () => {
             authorization: `ApiKey ${apiKey}`
         }
 
-        // Intentionally broken unit test
-        expect(getAPIKey(headers)).toBe(null)
+        expect(getAPIKey(headers)).toBe(apiKey)
     })
 })
