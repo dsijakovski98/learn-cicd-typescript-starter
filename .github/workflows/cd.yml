@@ -15,6 +15,7 @@ jobs:
       PROJECT_ID: notely-bootdev-494920
       REPO: notely-ar-repo
       IMAGE: notely:latest
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
       - name: Check out code
@@ -44,6 +45,9 @@ jobs:
         run: |
           gcloud builds submit \
           --tag $REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$IMAGE .
+
+      - name: Migrate DB
+        run: npm run db:migrate
 
       - name: Deploy to Cloud Run
         run: |
